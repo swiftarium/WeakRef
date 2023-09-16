@@ -34,6 +34,12 @@ extension WeakRef: Equatable {
     }
 }
 
+extension WeakRef: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        if let value { hasher.combine("\(value)") }
+    }
+}
+
 extension WeakRef: CustomStringConvertible {
     public var description: String { debugDescription }
 }
