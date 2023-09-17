@@ -14,7 +14,7 @@ The `WeakRef` in Swift provides a mechanism to hold a weak reference to objects,
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swiftarium/WeakRef.git", from: "1.0.0"),
+    .package(url: "https://github.com/swiftarium/WeakRef.git", from: "1.1.0"),
 ]
 ```
 
