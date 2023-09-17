@@ -1,8 +1,12 @@
 # WeakRef
 
-`WeakRef` is a Swift utility that wraps a weak reference to an object.
+The `WeakRef` in Swift provides a mechanism to hold a weak reference to objects, particularly useful when you want to reference an object without preventing the Automatic Reference Counting (ARC) system from disposing of it.
 
-It is designed to be used when you want to reference an object without preventing ARC (Automatic Reference Counting) from disposing of it when there are no strong references left to the object.
+## Features
+
+- The primary purpose of the WeakRef structure is to allow weak referencing to an object of type T, where T is any class type.
+- Easily check if the weak reference holds a valid object or if it has been nilled out with the `isEmpty` and `isValid` computed properties.
+- `Equatable` conformance allows weak references to be compared for equality with other weak references or directly with any object. `Hashable` conformance ensures you can store WeakRef in sets or use them as dictionary keys.
 
 ## Installation
 
@@ -14,6 +18,12 @@ dependencies: [
 ]
 ```
 
+```swift
+targets: [
+    .target(name: "YourTarget", dependencies: ["WeakRef"]),
+]
+```
+
 ## Usage
 
 ### Basic Usage
@@ -21,12 +31,12 @@ dependencies: [
 ```swift
 class MyClass {}
 
-var inst: MyClass? = .init()
+var object: MyClass? = .init()
 
-let weakRef = WeakRef(inst)
+let weakRef = WeakRef(object)
 print(weakRef) // WeakRef(MyClass)
 
-inst = nil // MyClass instance is deinited
+object = nil // MyClass instance is deinited
 print(weakRef) // WeakRef(nil)
 ```
 

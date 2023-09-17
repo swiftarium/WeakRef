@@ -7,8 +7,8 @@ public struct WeakRef<T: AnyObject> {
     /// A boolean value that indicates whether the weak reference is nil or not.
     public var isEmpty: Bool { value == nil }
 
-    /// A boolean value that indicates whether the weak reference has a value.
-    public var hasValue: Bool { value != nil }
+    /// A boolean value that indicates whether the weak reference is valid (has a value)
+    public var isValid: Bool { value != nil }
 
     /// Initializes a new weak reference with the provided value.
     /// - Parameter value: The object to be weakly referenced.
@@ -36,7 +36,8 @@ extension WeakRef: Equatable {
 
 extension WeakRef: Hashable {
     public func hash(into hasher: inout Hasher) {
-        if let value { hasher.combine("\(value)") }
+        if let value { hasher.combine(ObjectIdentifier(value)) }
+        else { hasher.combine(0)}
     }
 }
 
